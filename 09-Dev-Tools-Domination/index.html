@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Console Tricks!</title>
+</head>
+
+<body>
+
+  <p onClick="makeGreen()">請打開console查看結果</p>
+
+  <script>
+    const p = document.querySelector('p');
+    function makeGreen() {
+      p.style.color = '#BADA55';
+      p.style.fontSize = '50px';
+    }
+
+    // Regular
+    console.log('hello');
+
+    // Interpolated
+    const val = '「Hi!我是被帶入的參數值」';
+    console.log('帶入一個參數：%s', val);
+
+    // Styled
+    console.log('%c 帶有CSS樣式', 'font-size:30px; color:red;');
+
+    // warning!
+    console.warn('這有驚嘆號');
+
+    // Error :|
+    console.error('這有叉叉');
+
+    // Testing
+    console.assert(1 === 2, 'false就會輸出此訊息');
+
+    // clearing
+    // console.clear();
+
+    // Viewing DOM Elements
+    console.log(p);
+    console.dir(p);
+
+    // Grouping together
+    const dogs = [
+      { name: 'dog1', age: 2, like: 'ball' },
+      { name: 'dog2', age: 8, like: 'eat' }
+    ];
+
+    dogs.forEach(dog => {
+      console.group(`${dog.name}`);
+      console.log(`AGE: ${dog.age}`);
+      console.log(`LIKE: ${dog.like}`);
+      console.groupEnd(`${dog.name}`);
+    });
+
+    // counting
+    console.count('Wes');
+    console.count('Wes');
+    console.count('Steve');
+    console.count('Steve');
+    console.count('Wes');
+    console.count('Steve');
+    console.count('Wes');
+    console.count('Steve');
+    console.count('Steve');
+    console.count('Steve');
+
+    // timing
+    console.time('GET API 的時間：');
+    fetch('https://api.github.com/users/wesbos')
+      .then(data => data.json())
+      .then(data => {
+        console.timeEnd('GET API 的時間：');
+        console.log(data);
+      });
+
+    // table
+    console.table(dogs);
+
+  </script>
+</body>
+
+</html>
